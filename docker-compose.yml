@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - HOST=postgres
+    volumes:
+      - .:/app
+    entrypoint: >
+      /bin/sh -c "./wait-for-it.sh postgres:5432 -t 30 && npm run migrate:up && npm start"
+
+  postgres:
+    image: bitnami/postgresql:latest
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=${pgPassword}
+      - POSTGRES_DB=${testdb}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-data:/bitnami/postgresql
+volumes:
+  pg-data:

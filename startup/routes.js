@@ -1,0 +1,24 @@
+const express = require("express");
+const cors = require("cors");
+const { errorMiddleware } = require("../middleware/errors");
+const applicationRoute = require("../db/pg_routes/applications");
+const eventRoute = require("../db/pg_routes/events");
+const notificationRoute = require("../db/pg_routes/notificationType");
+const messageRoute = require("../db/pg_routes/messages");
+const tagsRoute = require("../db/pg_routes/tags");
+const userRoute = require("../db/pg_routes/users");
+const authRoute = require("../db/pg_routes/auth");
+// const auth = require("../middleware/auth");
+module.exports = function (app) {
+  app.use(express.json());
+  app.use("/api/users", userRoute);
+  // app.use(auth);
+  app.use(cors({ origin: "http://localhost:5173" }));
+  app.use("/api/auth", authRoute);
+  app.use("/api/applications", applicationRoute);
+  app.use("/api/events", eventRoute);
+  app.use("/api/notifications", notificationRoute);
+  app.use("/api/messages", messageRoute);
+  app.use("/api/tags", tagsRoute);
+  app.use(errorMiddleware);
+};

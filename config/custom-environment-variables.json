@@ -1,0 +1,9 @@
+{
+  "port": "PORT",
+  "jwtprivatekey": "project_jwtprivatekey",
+  "connection": {
+    "password": "pgPassword",
+    "devDb": "testdb",
+    "testDb": "testingdb"
+  }
+}

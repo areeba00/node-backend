@@ -1,0 +1,17 @@
+{
+  "logging": {
+    "level": "verbose"
+  },
+  "db": {
+    "mongoURI": "mongodb://localhost:27017/Server",
+    "options": {
+      "useNewUrlParser": true,
+      "useUnifiedTopology": true
+    }
+  },
+  "connection": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "test"
+  }
+}
